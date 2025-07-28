@@ -13,6 +13,7 @@ formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(messag
 handler.setFormatter(formatter)
 logger.addHandler(handler)
 
+
 mcp = FastMCP(
     name="Астрономический ассистент",
     system_prompt="""
@@ -29,6 +30,7 @@ mcp = FastMCP(
 - "Где сейчас летит МКС?"
 """
 )
+
 
 @mcp.tool()
 def get_astronauts(context: Context) -> str:
@@ -60,7 +62,7 @@ def get_iss_location(context: Context) -> str:
     Args:
         context (Context): контекст выполнения действий
     Returns:
-        (str): JSON-строка с данными3
+        (str): JSON-строка с данными
     """
     api_url = "http://api.open-notify.org/iss-now.json"
 

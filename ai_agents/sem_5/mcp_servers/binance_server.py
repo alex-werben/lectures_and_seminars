@@ -9,8 +9,8 @@ from binance.client import Client
 from ta.trend import SMAIndicator
 from ta.momentum import RSIIndicator
 from contextlib import asynccontextmanager
-from typing import AsyncIterator, Dict, Any, List
 from mcp.server.fastmcp import FastMCP, Context
+from typing import AsyncIterator, Dict, Any, List
 
 
 logger = logging.getLogger("binance_mcp")

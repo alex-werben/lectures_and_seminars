@@ -1,0 +1,27 @@
+# python 3.12.11
+# usage: pip install -r requirements.txt
+
+# base
+mcp>=1.12.2
+qwen_agent>=0.0.29
+pydantic>=2.11.7
+
+# pubmed
+pymed>=0.8.9
+googletrans>=4.0.2
+
+# binance
+# необходимо создать config.env файл с testnet_api_key и testnet_secret_key
+# https://testnet.binance.vision/
+python-binance>=1.0.29
+ta>=0.11.0
+pandas>=2.3.1
+python-dotenv>=1.1.1
+
+# astrology
+geopy>=2.4.1
+timezonefinder>=7.0.1
+kerykeion>=4.26.2
+
+# arxiv
+arxiv>=2.2.0

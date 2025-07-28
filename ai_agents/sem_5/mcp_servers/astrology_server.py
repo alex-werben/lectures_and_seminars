@@ -14,7 +14,7 @@ from kerykeion import AstrologicalSubject, KerykeionChartSVG
 
 
 _ASTROLOGY_INTERPRETATIONS_CACHE = None
-PLOT_OUTPUT_DIR = '/Users/dmitriifrolov/Python/mcp/astrology_plots'
+PLOT_OUTPUT_DIR = '/path/to/folder/astrology_plots'
 
 logger = logging.getLogger("natal_astrologer")
 logger.setLevel(logging.INFO)
