@@ -1,5 +1,4 @@
 # python 3.12.11
-# usage: pip install -r requirements.txt
 
 # base
 mcp>=1.12.2
@@ -20,8 +19,15 @@ python-dotenv>=1.1.1
 
 # astrology
 geopy>=2.4.1
+pytz>=2025.2
 timezonefinder>=7.0.1
 kerykeion>=4.26.2
 
 # arxiv
 arxiv>=2.2.0
+
+# tg parser
+# cli python3 -m playwright install-deps chromium
+playwright>=1.54.0
+scrapy>=2.13.3
+scrapy-playwright>=0.0.43
