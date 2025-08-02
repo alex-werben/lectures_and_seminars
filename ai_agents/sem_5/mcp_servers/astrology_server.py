@@ -968,19 +968,19 @@ def handle_astrology_query(prompt: str,
             
             result_json = get_synastry_report(
                 context=context,
-                name1=name1, 
-                year1=year1, 
-                month1=month1, 
-                day1=day1, 
-                hour1=hour1, 
-                minute1=minute1, 
+                name1=name1,
+                year1=year1,
+                month1=month1,
+                day1=day1,
+                hour1=hour1,
+                minute1=minute1,
                 city1=city1,
-                name2=name2, 
-                year2=year2, 
-                month2=month2, 
-                day2=day2, 
-                hour2=hour2, 
-                minute2=minute2, 
+                name2=name2,
+                year2=year2,
+                month2=month2,
+                day2=day2,
+                hour2=hour2,
+                minute2=minute2,
                 city2=city2
             )
             
@@ -1044,8 +1044,8 @@ def handle_astrology_query(prompt: str,
                 return [
                     {
                         "role": "assistant", 
-                        "content": f"Для составления вашей натальной карты мне нужны: {', '.join(missing)}. " 
-                                "Пожалуйста, укажите имя, полную дату рождения (например, '15 марта 1990'), "
+                        "content": f"Для составления вашей натальной карты мне нужны: {', '.join(missing)}." 
+                                "Пожалуйста, укажите имя, полную дату рождения (например, '15 марта 1990'),"
                                 "точное время рождения (например, '18:45') и город рождения."
                     }
                 ]
@@ -1058,13 +1058,13 @@ def handle_astrology_query(prompt: str,
                 response_title = f"🪐 Натальная карта для {name}"
             
             result_json = tool_to_call(
-                context, 
-                name=name, 
-                year=year, 
-                month=month, 
-                day=day, 
-                hour=hour, 
-                minute=minute, 
+                context=context,
+                name=name,
+                year=year,
+                month=month,
+                day=day,
+                hour=hour,
+                minute=minute,
                 city=city
             )
             

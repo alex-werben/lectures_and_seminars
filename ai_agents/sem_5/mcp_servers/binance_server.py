@@ -226,6 +226,7 @@ def calculate_indicators(symbol: str,
             close=data['close'], 
             window=20
         ).sma_indicator()
+        
         data['rsi_14'] = RSIIndicator(
             close=data['close'], 
             window=14

@@ -6,12 +6,17 @@ import requests
 from typing import Dict, Any, List
 from mcp.server.fastmcp import FastMCP, Context
 
+
 logger = logging.getLogger("recipe_assistant")
 logger.setLevel(logging.INFO)
 handler = logging.StreamHandler()
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 handler.setFormatter(formatter)
 logger.addHandler(handler)
+
+
+BASE_URL = "https://www.themealdb.com/api/json/v1/1/"
+
 
 mcp = FastMCP(
     name="Помощник по рецептам",
@@ -38,7 +43,7 @@ def search_recipe_by_name(context: Context,
     """
     Ищет рецепт по названию блюда.
     """
-    api_url = f"https://www.themealdb.com/api/json/v1/1/search.php?s={name}"
+    api_url = BASE_URL + f"search.php?s={name}"
 
     try:
         response = requests.get(api_url)
@@ -47,7 +52,12 @@ def search_recipe_by_name(context: Context,
     except requests.exceptions.RequestException as e:
         context.logger.error(f"Сетевая ошибка: {e}")
 
-        return json.dumps({"meals": None, "error": "Ошибка сети"})
+        return json.dumps(
+            {
+                "meals": None, 
+                "error": "Ошибка сети"
+            }
+        )
 
 @mcp.tool()
 def search_recipe_by_ingredient(context: Context, 
@@ -55,7 +65,7 @@ def search_recipe_by_ingredient(context: Context,
     """
     Ищет рецепты по основному ингредиенту.
     """
-    api_url = f"https://www.themealdb.com/api/json/v1/1/filter.php?i={ingredient}"
+    api_url = BASE_URL + f"filter.php?i={ingredient}"
 
     try:
         response = requests.get(api_url)
@@ -64,7 +74,12 @@ def search_recipe_by_ingredient(context: Context,
     except requests.exceptions.RequestException as e:
         context.logger.error(f"Сетевая ошибка: {e}")
 
-        return json.dumps({"meals": None, "error": "Ошибка сети"})
+        return json.dumps(
+            {
+                "meals": None, 
+                "error": "Ошибка сети"
+            }
+        )
 
 
 @mcp.prompt()
@@ -123,7 +138,6 @@ def handle_recipe_query(prompt: str,
         
         meal = data["meals"][0]
         response = f"###  рецепт: {meal['strMeal']} ({meal.get('strArea', '')})\n\n"
-        response += f"![Фото блюда]({meal['strMealThumb']})\n\n"
         response += "**Ингредиенты:**\n"
 
         for i in range(1, 21):
@@ -148,6 +162,7 @@ def handle_recipe_query(prompt: str,
             "content": response
         }
     ]
+
 
 if __name__ == "__main__":
     mcp.run(transport="stdio")

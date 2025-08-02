@@ -118,7 +118,11 @@ def search_medical_articles(topic: str,
     except Exception as e:
         logger.error(f"Ошибка поиска статей: {str(e)}")
 
-        return [{"error": "Не удалось выполнить поиск. Проверьте запрос."}]
+        return [
+            {
+                "error": "Не удалось выполнить поиск. Проверьте запрос."
+            }
+        ]
 
 def save_article(article: Dict):
     """
@@ -179,7 +183,9 @@ def get_article_details(pmid: str,
     except Exception as e:
         logger.error(f"Ошибка получения статьи {pmid}: {str(e)}")
 
-        return {"error": f"Статья с PMID {pmid} не найдена"}
+        return {
+            "error": f"Статья с PMID {pmid} не найдена"
+        }
 
 @mcp.tool()
 def summarize_medical_evidence(pmids: List[str], 
@@ -301,7 +307,7 @@ def list_medical_topics() -> str:
         if os.path.isdir(item_path) and os.listdir(item_path):
             topics.append(item.replace("_", " ").title())
     
-    content = "## Доступные медицинские темы\n\n"
+    content = "Доступные медицинские темы\n\n"
 
     if topics:
         content += "\n".join(f"- {topic}" for topic in sorted(topics))
@@ -340,6 +346,7 @@ def get_formatted_article(pmid: str) -> str:
     content += f"`PMID: {pmid}`"
     
     return content
+
 
 if __name__ == "__main__":
     mcp.run(transport="stdio")

@@ -8,6 +8,7 @@ from datetime import datetime
 from typing import List, Dict, Optional
 from mcp.server.fastmcp import FastMCP, Context
 
+
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("arxiv_assistant")
 

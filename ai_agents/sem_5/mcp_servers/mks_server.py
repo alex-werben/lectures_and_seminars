@@ -14,6 +14,9 @@ handler.setFormatter(formatter)
 logger.addHandler(handler)
 
 
+BASE_URL = "http://api.open-notify.org/"
+
+
 mcp = FastMCP(
     name="Астрономический ассистент",
     system_prompt="""
@@ -42,7 +45,7 @@ def get_astronauts(context: Context) -> str:
     Returns:
         (str): JSON-строка с данными
     """
-    api_url = "http://api.open-notify.org/astros.json"
+    api_url = BASE_URL + "astros.json"
 
     try:
         response = requests.get(api_url)
@@ -50,9 +53,17 @@ def get_astronauts(context: Context) -> str:
         if response.status_code == 200:
             return json.dumps(response.json(), ensure_ascii=False, indent=2)
         else:
-            return json.dumps({"error": f"API вернуло ошибку: {response.status_code}"})
+            return json.dumps(
+                {
+                    "error": f"API вернуло ошибку: {response.status_code}"
+                }
+            )
     except requests.exceptions.RequestException as e:
-        return json.dumps({"error": "Не удалось подключиться к сервису Open Notify."})
+        return json.dumps(
+            {
+                "error": "Не удалось подключиться к сервису Open Notify."
+            }
+        )
 
 @mcp.tool()
 def get_iss_location(context: Context) -> str:
@@ -64,7 +75,7 @@ def get_iss_location(context: Context) -> str:
     Returns:
         (str): JSON-строка с данными
     """
-    api_url = "http://api.open-notify.org/iss-now.json"
+    api_url = BASE_URL + "iss-now.json"
 
     try:
         response = requests.get(api_url)
@@ -72,7 +83,11 @@ def get_iss_location(context: Context) -> str:
         if response.status_code == 200:
             return json.dumps(response.json(), ensure_ascii=False, indent=2)
         else:
-            return json.dumps({"error": f"API вернуло ошибку: {response.status_code}"})
+            return json.dumps(
+                {
+                    "error": f"API вернуло ошибку: {response.status_code}"
+                }
+            )
     except requests.exceptions.RequestException as e:
         return json.dumps({"error": "Не удалось подключиться к сервису Open Notify."})
 
