@@ -22,7 +22,7 @@ PAPER_INDEX = {}
 
 mcp = FastMCP(
     name="llm_research",
-    system_prompt="""
+    instructions="""
 Ты - помощник для анализа научных статей по LLM и Computer Science. 
 Используй инструменты для поиска и анализа статей. 
 Отвечай на русском языке.
